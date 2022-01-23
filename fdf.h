@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:47:09 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/23 12:34:08 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/23 19:28:54 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,18 @@ typedef struct s_program
 	int		rows;
 	int		**map;
 	int		z;
+	int		key;
+	int		pixels;
+	int		color;
 }				t_prog;
 
 /* all main functions that are called within the program */
 void	ft_cases(int i);
 void	read_map(char *map, int fd, t_prog *pnt);
-void	write_map(t_prog *pnt ,int i , int j,int loc);
+void	write_map(t_prog *pnt, int i, int j, int loc, int l_gap);
 int		key_events(int button);
-void	draw_line(t_prog *pnt, int s_x, int s_y, int e_x, int e_y, int color);
 int		rgb_to_int(double r, double g, double b);
-void 	rotate_shape(int *pixel_x, int *pixel_y, int z);
+void	rotate_shape(int *p, int z);
+void	set_color(t_prog *pnt);
 
 #endif

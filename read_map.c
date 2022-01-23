@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:11:54 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/23 12:33:37 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/23 18:43:04 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	read_cols_rows(int fd, char *line, t_prog *pnt)
 	while (get_next_line(fd, &tmp))
 		i++;
 	ft_free(tmp, ft_strlen(tmp));
-	pnt->rows = i + 1;
+	pnt->rows = i;
 }
 
 /*Mallocing for the map within the struct by making each rows as one 
