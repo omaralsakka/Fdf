@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+         #
+#    By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 13:36:41 by oabdelfa          #+#    #+#              #
-#    Updated: 2022/01/23 10:38:33 by oabdelfa         ###   ########.fr        #
+#    Updated: 2022/01/24 11:37:36 by oabdelfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ FLAGS = -Wall -Wextra -Werror
 
 #linking to location of libft and .a -L library, -I is for reaching folders, 
 #-l for files.c
-# LINKS := -I libft/includes -L libft -I /usr/local/include -L /usr/local/lib \
-# 		-l mlx -l ft -framework OpenGL -framework Appkit
-LINKS := -I libft/includes -L libft -I mlx/includes -L mlx\
-		-l mlx -l ft -lmlx -lX11 -lXext -lm
+LINKS := -I libft/includes -L libft -I /usr/local/include -L /usr/local/lib \
+		-l mlx -l ft -framework OpenGL -framework Appkit
+# LINKS := -I libft/includes -L libft -I mlx/includes -L mlx\
+# 		-l mlx -l ft -lmlx -lX11 -lXext -lm
 
 CC = gcc
 #make first the make -C from LIBFT directory, -C to go into a root directory, 

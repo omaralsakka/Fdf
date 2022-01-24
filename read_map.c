@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:11:54 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/23 18:43:04 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:41:53 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	map_malloc(t_prog *pnt)
 	int	i;
 
 	i = -1;
-	pnt->map = (int **)malloc(sizeof (int *) * pnt->rows);
+	pnt->map = (int **)malloc(sizeof (int *) * pnt->rows + 1);
 	if (!(pnt->map))
 		ft_cases(5);
 	while (++i <= pnt->rows)
@@ -82,7 +82,7 @@ static void	map_assigning(int fd, char *map, t_prog *pnt)
 void	read_map(char *map, int fd, t_prog *pnt)
 {
 	char	*line;
-
+	(void)map;
 	if (!(get_next_line(fd, &line)))
 		ft_cases(4);
 	if (!(ft_strsplit(line, ' ')))

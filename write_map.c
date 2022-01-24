@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:39:17 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/23 19:36:01 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 11:53:59 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ void	write_map(t_prog *pnt, int i, int j, int loc, int l_gap)
 	loc = 0;
 	while (++j <= pnt->cols)
 	{
-		while (++i <= pnt->rows - 1)
+		while (++i < pnt->rows)
 		{
 			pnt->z = pnt->map[i][j];
 			fill_cols(p1, p2, loc, l_gap, pnt->z);
-			if (pnt->map[i][j - 1])
+			if (i > 0 && j > 0 && pnt->map[i][j - 1])
 				pnt->z = pnt->map[i][j - 1];
 			draw_line(pnt, p1[0], p1[1], p2[0], p2[1]);
 			loc += 30;
