@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:47:09 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 11:37:46 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:30:23 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	write_map(t_prog *pnt, int i, int j, int loc, int l_gap);
 int		key_events(int button);
 int		rgb_to_int(double r, double g, double b);
 void	rotate_shape(int *p, int z);
-void	set_color(t_prog *pnt);
+void	set_color(t_prog *pnt, int *p1, int *p2);
 
 #endif

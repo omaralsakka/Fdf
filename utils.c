@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:15:12 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/23 19:32:17 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 12:30:54 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	rgb_to_int(double r, double g, double b)
 	return (color);
 }
 
-void	set_color(t_prog *pnt)
+void	set_color(t_prog *pnt, int *p1, int *p2)
 {
-	if (pnt->z)
-		pnt->color = rgb_to_int(1, 0.2531, 1);
+	(void)p2;
+	if (p1[2])
+		pnt->color = rgb_to_int(1, 0.2531, 1);	
 	else
 		pnt->color = rgb_to_int(1, 1, 1);
 }
