@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:11:54 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 11:41:53 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:55:06 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*reading the cols and rows of the given map, then assigning it to
  the struct, the rows set as the rows & the columns as cols*/
-
 static void	read_cols_rows(int fd, char *line, t_prog *pnt)
 {
 	char	**str;
@@ -52,9 +51,9 @@ static void	map_malloc(t_prog *pnt)
 			ft_free_array((void **)pnt->map, i);
 	}
 }
+
 /*Converting each line content first to number then saving it into each
 int within the map array*/
-
 static void	map_assigning(int fd, char *map, t_prog *pnt)
 {
 	char	**tmp;

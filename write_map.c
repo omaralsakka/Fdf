@@ -6,12 +6,16 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:39:17 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 17:40:25 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:54:57 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*This function draws lines to the window screen, by starting from p1x and 
+p1y to p2x and p2y, it then calculates line direction which is delta x and y, 
+then sets the color of the line and finally loops with pixels amount to draw 
+the asked line.*/
 static void	draw_line(t_prog *pnt, int *p1, int *p2)
 {
 	double	delta_x;
@@ -32,7 +36,7 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	while (pnt->pixels)
 	{
 		if ((!p1[2] && p2[2]) || (p1[2] && !p2[2]))
-			pnt->color = rgb_to_int(1, 0.81, 0);
+			pnt->color = pnt->ver_color;
 		mlx_pixel_put(pnt->mlx, pnt->win, (cols + pixel_x), pixel_y,
 			pnt->color);
 		pixel_x += delta_x;
@@ -41,32 +45,42 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	}
 }
 
+/*filling the 2d arrays with rows coordinates, offset is the distance from the screen
+ top left side, going to the right*/
 static void	fill_rows(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
 	int	offset;
 
 	offset = 100;
-	p1[0] = offset + (pnt->i * 20);
-	p1[1] = offset + (l_gap * 20);
-	p2[0] = offset + (pnt->i * 20) + 20;
-	p2[1] = offset + (l_gap * 20);
-	rotate_shape(p1);
-	rotate_shape(p2);
+	p1[0] = offset + (pnt->i * pnt->size);
+	p1[1] = offset + (l_gap * pnt->size);
+	p2[0] = offset + (pnt->i * pnt->size) + pnt->size;
+	p2[1] = offset + (l_gap * pnt->size);
+	if (pnt->trg)
+	{
+		rotate_shape(p1, pnt);
+		rotate_shape(p2, pnt);
+	}
 }
 
+/*filling the 2d arrays with cols coordinates*/
 static void	fill_cols(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
 	int	offset;
 
 	offset = 100;
-	p1[0] = offset + (l_gap * 20);
-	p1[1] = offset + (pnt->i * 20);
-	p2[0] = offset + (l_gap * 20);
-	p2[1] = offset + (pnt->i * 20) + 20;
-	rotate_shape(p1);
-	rotate_shape(p2);
+	p1[0] = offset + (l_gap * pnt->size);
+	p1[1] = offset + (pnt->i * pnt->size);
+	p2[0] = offset + (l_gap * pnt->size);
+	p2[1] = offset + (pnt->i * pnt->size) + pnt->size;
+	if (pnt->trg)
+	{
+		rotate_shape(p1, pnt);
+		rotate_shape(p2, pnt);
+	}
 }
 
+/*drawing columns lines*/
 static void	draw_cols(t_prog *pnt, int *p1, int *p2, int j)
 {
 	pnt->i = -1;
@@ -89,6 +103,8 @@ static void	draw_cols(t_prog *pnt, int *p1, int *p2, int j)
 	}
 }
 
+/*Here we start by creating 2 2d arrays which will save starting x,y and ending x,y
+then start drawing the rows first then called drawing cols function afterwards*/
 void	write_map(t_prog *pnt, int j)
 {
 	int	p1[3];

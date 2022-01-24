@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:47:09 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 17:40:12 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:41:09 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ typedef struct s_program
 	int		color;
 	int		i;
 	int		trg;
+	int		elev;
+	int		size;
+	int		b_color;
+	int		elv_color;
+	int		ver_color;
 }				t_prog;
 
 
@@ -42,7 +47,7 @@ void	read_map(char *map, int fd, t_prog *pnt);
 void	write_map(t_prog *pnt, int j);
 int		key_events(int button, t_prog *pnt);
 int		rgb_to_int(double r, double g, double b);
-void	rotate_shape(int *p);
+void	rotate_shape(int *p, t_prog *pnt);
 void	set_color(t_prog *pnt, int *p1, int *p2);
 
 #endif
