@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:39:17 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 16:36:54 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:40:25 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,86 +41,76 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	}
 }
 
-static void	fill_rows(int *p1, int *p2, int loc, int l_gap)
+static void	fill_rows(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
 	int	offset;
 
 	offset = 100;
-	p1[0] = offset + loc;
-	p1[1] = offset + l_gap;
-	p2[0] = offset + loc + 20;
-	p2[1] = offset + l_gap;
+	p1[0] = offset + (pnt->i * 20);
+	p1[1] = offset + (l_gap * 20);
+	p2[0] = offset + (pnt->i * 20) + 20;
+	p2[1] = offset + (l_gap * 20);
 	rotate_shape(p1);
 	rotate_shape(p2);
 }
 
-static void	fill_cols(int *p1, int *p2, int loc, int l_gap)
+static void	fill_cols(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
 	int	offset;
 
 	offset = 100;
-	p1[0] = offset + l_gap;
-	p1[1] = offset + loc;
-	p2[0] = offset + l_gap;
-	p2[1] = offset + loc + 20;
+	p1[0] = offset + (l_gap * 20);
+	p1[1] = offset + (pnt->i * 20);
+	p2[0] = offset + (l_gap * 20);
+	p2[1] = offset + (pnt->i * 20) + 20;
 	rotate_shape(p1);
 	rotate_shape(p2);
 }
 
-void	write_map(t_prog *pnt, int i, int j, int loc, int l_gap)
+static void	draw_cols(t_prog *pnt, int *p1, int *p2, int j)
 {
-	int	numb;
-	int	col_gaps;
+	pnt->i = -1;
+	while (++j <= pnt->cols)
+	{
+		while (++pnt->i < pnt->rows)
+		{
+			p1[2] = pnt->map[pnt->i][j];
+			p2[2] = p1[2];
+			if (pnt->map[pnt->i + 1][j] && !pnt->map[pnt->i][j])
+				p2[2] = pnt->map[pnt->i + 1][j];
+			if (pnt->map[pnt->i][j] && !pnt->map[pnt->i + 1][j])
+				p2[2] = pnt->map[pnt->i + 1][j];
+			fill_cols(p1, p2, pnt, j);
+			if (pnt->i > 0 && j > 0 && pnt->map[pnt->i][j - 1])
+				p1[2] = pnt->map[pnt->i][j - 1];
+			draw_line(pnt, p1, p2);
+		}
+		pnt->i = -1;
+	}
+}
+
+void	write_map(t_prog *pnt, int j)
+{
 	int	p1[3];
 	int	p2[3];
 
+	pnt->i = -1;
 	while (++j <= pnt->rows)
 	{
-		while (++i < pnt->cols)
+		while (++pnt->i < pnt->cols)
 		{
-			p1[2] = pnt->map[j][i];
+			p1[2] = pnt->map[j][pnt->i];
 			p2[2] = p1[2];
-			/*connecting rows*/
-			if (pnt->map[j][i + 1])
-				p2[2] = pnt->map[j][i + 1];
-			if (pnt->map[j][i] && !pnt->map[j][i + 1])
-				p2[2] = pnt->map[j][i + 1];
-			/**/
-			fill_rows(p1, p2, loc, l_gap);
-			if (j > 0 && pnt->map[j - 1][i])
-				p1[2] = pnt->map[j - 1][i];
+			if (pnt->map[j][pnt->i + 1])
+				p2[2] = pnt->map[j][pnt->i + 1];
+			if (pnt->map[j][pnt->i] && !pnt->map[j][pnt->i + 1])
+				p2[2] = pnt->map[j][pnt->i + 1];
+			fill_rows(p1, p2, pnt, j);
+			if (j > 0 && pnt->map[j - 1][pnt->i])
+				p1[2] = pnt->map[j - 1][pnt->i];
 			draw_line(pnt, p1, p2);
-			loc += 20;
 		}
-		numb = loc + 20;
-		i = -1;
-		loc = 0;
-		l_gap += 20;
+		pnt->i = -1;
 	}
-	j = -1;
-	l_gap = 0;
-	col_gaps = numb - (pnt->cols * 20);
-	loc = 0;
-	while (++j <= pnt->cols)
-	{
-		while (++i < pnt->rows)
-		{
-			p1[2] = pnt->map[i][j];
-			p2[2] = p1[2];
-			/*connecting cols*/
-			if (pnt->map[i + 1][j] && !pnt->map[i][j])
-				p2[2] = pnt->map[i + 1][j];
-			if (pnt->map[i][j] && !pnt->map[i + 1][j])
-				p2[2] = pnt->map[i + 1][j];
-			/**/
-			fill_cols(p1, p2, loc, l_gap);
-			if (i > 0 && j > 0 && pnt->map[i][j - 1])
-				p1[2] = pnt->map[i][j - 1];
-			draw_line(pnt, p1, p2);
-			loc += 20;
-		}
-		i = -1;
-		loc = 0;
-		l_gap += col_gaps;
-	}
+	draw_cols(pnt, p1, p2, -1);
 }

@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:45:57 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 11:37:54 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/24 17:37:45 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	read_map(argv[1], fd, &pnt);
 	pnt.mlx = mlx_init();
 	pnt.win = mlx_new_window(pnt.mlx, 1680, 1050, "fdf window");
-	write_map(&pnt, -1, -1, 0, 0);
+	write_map(&pnt, -1);
 	mlx_key_hook(pnt.win, &key_events, &pnt);
 	mlx_loop(pnt.mlx);
 	return (0);
