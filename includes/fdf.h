@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:47:09 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 19:41:09 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:04:37 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "mlx.h"
 # include <math.h>
 # include "libft.h"
-# include <stdio.h> //DELETE THIS
 # include <fcntl.h>
 # include <stdlib.h>
 
@@ -39,7 +38,6 @@ typedef struct s_program
 	int		elv_color;
 	int		ver_color;
 }				t_prog;
-
 
 /* all main functions that are called within the program */
 void	ft_cases(int i);

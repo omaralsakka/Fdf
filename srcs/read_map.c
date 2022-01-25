@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:11:54 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 19:55:06 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:32:58 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,22 @@ static void	map_assigning(int fd, char *map, t_prog *pnt)
 	close(fd);
 }
 
+/*This function initilize the values of the tlist that will be used later
+to draw the map*/
+static void	init_values(t_prog *pnt)
+{
+	pnt->elev = 4;
+	pnt->size = 20;
+	pnt->b_color = rgb_to_int(1, 1, 1);
+	pnt->elv_color = rgb_to_int(1, 0.2531, 1);
+	pnt->ver_color = rgb_to_int(1, 0.81, 0);
+}
+
 /*Reading the givin string map and saving it into the struct pnt*/
 void	read_map(char *map, int fd, t_prog *pnt)
 {
 	char	*line;
-	(void)map;
+
 	if (!(get_next_line(fd, &line)))
 		ft_cases(4);
 	if (!(ft_strsplit(line, ' ')))
@@ -90,4 +101,5 @@ void	read_map(char *map, int fd, t_prog *pnt)
 	map_malloc(pnt);
 	close(fd);
 	map_assigning(fd, map, pnt);
+	init_values(pnt);
 }

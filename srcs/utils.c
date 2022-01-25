@@ -6,15 +6,19 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:15:12 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 19:55:24 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:33:34 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/*This function assign the pressed button to specific effect or change to do in the function*/
+/*This function assign the pressed button to specific effect or 
+change to do in the function*/
 static void	effects(int button, t_prog *pnt)
 {
+	int	i;
+
+	i = 0;
 	if (button == 124)
 		pnt->trg = 0;
 	if (button == 123)
@@ -46,7 +50,6 @@ int	key_events(int button, t_prog *pnt)
 		effects(button, pnt);
 	return (0);
 }
-
 
 /*This function responsible for returning a color value*/
 int	rgb_to_int(double r, double g, double b)

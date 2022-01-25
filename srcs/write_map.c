@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:39:17 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/24 19:54:57 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:29:47 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	double	delta_y;
 	double	pixel_x;
 	double	pixel_y;
-	int		cols;
+	int		c_width;
 
 	delta_x = p2[0] - p1[0];
 	delta_y = p2[1] - p1[1];
 	pnt->pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	cols = 800 - sqrt(pnt->rows * pnt->rows + pnt->cols * pnt->cols);
+	c_width = 800 - sqrt(pnt->rows * pnt->rows + pnt->cols * pnt->cols);
 	delta_x /= pnt->pixels;
 	delta_y /= pnt->pixels;
 	pixel_x = p1[0];
@@ -37,7 +37,7 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	{
 		if ((!p1[2] && p2[2]) || (p1[2] && !p2[2]))
 			pnt->color = pnt->ver_color;
-		mlx_pixel_put(pnt->mlx, pnt->win, (cols + pixel_x), pixel_y,
+		mlx_pixel_put(pnt->mlx, pnt->win, (c_width + pixel_x), pixel_y,
 			pnt->color);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
@@ -45,8 +45,8 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	}
 }
 
-/*filling the 2d arrays with rows coordinates, offset is the distance from the screen
- top left side, going to the right*/
+/*filling the 2d arrays with rows coordinates, offset is the distance from 
+the screen top left side, going to the right*/
 static void	fill_rows(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
 	int	offset;
@@ -103,8 +103,9 @@ static void	draw_cols(t_prog *pnt, int *p1, int *p2, int j)
 	}
 }
 
-/*Here we start by creating 2 2d arrays which will save starting x,y and ending x,y
-then start drawing the rows first then called drawing cols function afterwards*/
+/*Here we start by creating 2 2d arrays which will save starting x,y 
+and ending x,y then start drawing the rows first then called drawing cols 
+function afterwards*/
 void	write_map(t_prog *pnt, int j)
 {
 	int	p1[3];
@@ -129,4 +130,8 @@ void	write_map(t_prog *pnt, int j)
 		pnt->i = -1;
 	}
 	draw_cols(pnt, p1, p2, -1);
+	mlx_string_put(pnt->mlx, pnt->win, 50, 970, 16777215, "Keys Menu");
+	mlx_string_put(pnt->mlx, pnt->win, 50, 1000, 16777215, "left & right\
+	 arrows: projection | +, - : size | up & down arrows: 3d elevation\
+	 | C: colors");
 }
