@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:15:12 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/25 14:33:34 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:44:42 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 change to do in the function*/
 static void	effects(int button, t_prog *pnt)
 {
-	int	i;
-
-	i = 0;
 	if (button == 124)
 		pnt->trg = 0;
 	if (button == 123)

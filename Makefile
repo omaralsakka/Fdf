@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+         #
+#    By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 13:36:41 by oabdelfa          #+#    #+#              #
-#    Updated: 2022/01/25 13:46:24 by oabdelfa         ###   ########.fr        #
+#    Updated: 2022/01/27 11:46:43 by oabdelfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LINKS := -I libft/includes -L libft -I includes -L srcs -I /usr/local/include -L
 		-l mlx -l ft -framework OpenGL -framework Appkit
 
 #NOTE: COMMENT OUT THE TOP LINK AND USE THIS LOWER ONE WHEN COMPILING IN LINUX
-# LINKS := -I libft/includes -L libft -I minilibx-linux -L mlx\
+# LINKS := -I libft/includes -L libft -I minilibx-linux -L minilibx-linux -I includes -L srcs\
 # 		-l mlx -l ft -lmlx -lX11 -lXext -lm
 
 #compiling line
@@ -45,7 +45,8 @@ CC = gcc
 #then MAKE the current make
 #NOTE: ADD $(MAKE) -C $(MLX) UNDER LIBFT LINE WHEN COMPILING IN LINUX
 all:
-	$(MAKE) -C	$(LIBFT)	
+	$(MAKE) -C	$(LIBFT)
+	$(MAKE) -C	$(MLX)	
 	$(MAKE)		$(NAME)
 
 #NAME calling .o files then compiles the .c files with the program name, applies 
