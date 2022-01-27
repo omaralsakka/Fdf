@@ -1,5 +1,7 @@
 # Fdf
-FDF / Hive Helsinki - Ecole 42
+FDF / Hive Helsinki
+
+:diamond_shape_with_a_dot_inside: Project's goal:
 
 This program is about drawing a binary map with pixel lines into an extrnal window by mlx library.
 The idea is that the given map will contain grounds with low altitude and parts where
