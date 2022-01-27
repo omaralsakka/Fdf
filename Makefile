@@ -6,7 +6,7 @@
 #    By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 13:36:41 by oabdelfa          #+#    #+#              #
-#    Updated: 2022/01/27 11:46:43 by oabdelfa         ###   ########.fr        #
+#    Updated: 2022/01/27 11:47:29 by oabdelfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,7 @@ CC = gcc
 #then MAKE the current make
 #NOTE: ADD $(MAKE) -C $(MLX) UNDER LIBFT LINE WHEN COMPILING IN LINUX
 all:
-	$(MAKE) -C	$(LIBFT)
-	$(MAKE) -C	$(MLX)	
+	$(MAKE) -C	$(LIBFT)	
 	$(MAKE)		$(NAME)
 
 #NAME calling .o files then compiles the .c files with the program name, applies 
