@@ -20,8 +20,8 @@ controls when mlx window opens, and some linking diffrences if the project runni
 3-  once all the compilation done properly, you may start the program by:
 ```./fdf```
 
-4-  inside test-maps folder plenty of binary maps that you can write after the program name in this format:
-```./fdf ./test-maps/42.fdf```
+4-  inside test_maps folder plenty of binary maps that you can write after the program name in this format:
+```./fdf ./test_maps/42.fdf```
 
 5-  simply press ```esc``` to close the window
 
@@ -32,3 +32,6 @@ controls when mlx window opens, and some linking diffrences if the project runni
 1-  folllow the comments inside the Makefile to be able to link MLX library properly
 
 2-  all the window keys "except esc button" will not be running on Linux
+
+
+![Screenshot from 2022-01-27 15-56-05](https://user-images.githubusercontent.com/81321172/151372877-666ea8de-91fe-42ce-b657-3aff1b7fabdb.png)
