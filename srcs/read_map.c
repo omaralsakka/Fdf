@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:11:54 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/25 14:32:58 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:42:39 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static void	init_values(t_prog *pnt)
 {
 	pnt->elev = 4;
 	pnt->size = 20;
+	pnt->offset = 50;
 	pnt->b_color = rgb_to_int(1, 1, 1);
 	pnt->elv_color = rgb_to_int(1, 0.2531, 1);
 	pnt->ver_color = rgb_to_int(1, 0.81, 0);

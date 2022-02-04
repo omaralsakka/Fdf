@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:47:09 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/25 14:04:37 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:26:12 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_program
 	int		b_color;
 	int		elv_color;
 	int		ver_color;
+	int		offset;
 }				t_prog;
 
 /* all main functions that are called within the program */

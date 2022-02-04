@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oabdelfa <oabdelfa@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:15:12 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/27 11:44:42 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:07:14 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	key_events(int button, t_prog *pnt)
 {
 	if (button == 53 || button == 65307)
 		ft_cases(1);
-	if (button > 5 && button < 130)
+	if (button > -1 && button < 130)
 		effects(button, pnt);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: oabdelfa <oabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 15:39:17 by oabdelfa          #+#    #+#             */
-/*   Updated: 2022/01/25 14:29:47 by oabdelfa         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:36:16 by oabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 	set_color(pnt, p1, p2);
 	while (pnt->pixels)
 	{
-		if ((!p1[2] && p2[2]) || (p1[2] && !p2[2]))
+		if ((p1[2] < p2[2]) || (p1[2] > p2[2]))
 			pnt->color = pnt->ver_color;
 		mlx_pixel_put(pnt->mlx, pnt->win, (c_width + pixel_x), pixel_y,
 			pnt->color);
@@ -49,13 +49,10 @@ static void	draw_line(t_prog *pnt, int *p1, int *p2)
 the screen top left side, going to the right*/
 static void	fill_rows(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
-	int	offset;
-
-	offset = 100;
-	p1[0] = offset + (pnt->i * pnt->size);
-	p1[1] = offset + (l_gap * pnt->size);
-	p2[0] = offset + (pnt->i * pnt->size) + pnt->size;
-	p2[1] = offset + (l_gap * pnt->size);
+	p1[0] = pnt->offset + (pnt->i * pnt->size);
+	p1[1] = pnt->offset + (l_gap * pnt->size);
+	p2[0] = pnt->offset + (pnt->i * pnt->size) + pnt->size;
+	p2[1] = pnt->offset + (l_gap * pnt->size);
 	if (pnt->trg)
 	{
 		rotate_shape(p1, pnt);
@@ -66,13 +63,10 @@ static void	fill_rows(int *p1, int *p2, t_prog *pnt, int l_gap)
 /*filling the 2d arrays with cols coordinates*/
 static void	fill_cols(int *p1, int *p2, t_prog *pnt, int l_gap)
 {
-	int	offset;
-
-	offset = 100;
-	p1[0] = offset + (l_gap * pnt->size);
-	p1[1] = offset + (pnt->i * pnt->size);
-	p2[0] = offset + (l_gap * pnt->size);
-	p2[1] = offset + (pnt->i * pnt->size) + pnt->size;
+	p1[0] = pnt->offset + (l_gap * pnt->size);
+	p1[1] = pnt->offset + (pnt->i * pnt->size);
+	p2[0] = pnt->offset + (l_gap * pnt->size);
+	p2[1] = pnt->offset + (pnt->i * pnt->size) + pnt->size;
 	if (pnt->trg)
 	{
 		rotate_shape(p1, pnt);
@@ -90,9 +84,9 @@ static void	draw_cols(t_prog *pnt, int *p1, int *p2, int j)
 		{
 			p1[2] = pnt->map[pnt->i][j];
 			p2[2] = p1[2];
-			if (pnt->map[pnt->i + 1][j] && !pnt->map[pnt->i][j])
+			if (pnt->map[pnt->i + 1][j] > pnt->map[pnt->i][j])
 				p2[2] = pnt->map[pnt->i + 1][j];
-			if (pnt->map[pnt->i][j] && !pnt->map[pnt->i + 1][j])
+			if (pnt->map[pnt->i][j] > pnt->map[pnt->i + 1][j])
 				p2[2] = pnt->map[pnt->i + 1][j];
 			fill_cols(p1, p2, pnt, j);
 			if (pnt->i > 0 && j > 0 && pnt->map[pnt->i][j - 1])
@@ -120,7 +114,7 @@ void	write_map(t_prog *pnt, int j)
 			p2[2] = p1[2];
 			if (pnt->map[j][pnt->i + 1])
 				p2[2] = pnt->map[j][pnt->i + 1];
-			if (pnt->map[j][pnt->i] && !pnt->map[j][pnt->i + 1])
+			if (pnt->map[j][pnt->i] > pnt->map[j][pnt->i + 1])
 				p2[2] = pnt->map[j][pnt->i + 1];
 			fill_rows(p1, p2, pnt, j);
 			if (j > 0 && pnt->map[j - 1][pnt->i])
@@ -133,5 +127,5 @@ void	write_map(t_prog *pnt, int j)
 	mlx_string_put(pnt->mlx, pnt->win, 50, 970, 16777215, "Keys Menu");
 	mlx_string_put(pnt->mlx, pnt->win, 50, 1000, 16777215, "left & right\
 	 arrows: projection | +, - : size | up & down arrows: 3d elevation\
-	 | C: colors");
+	 | C: colors | esc: exit");
 }
