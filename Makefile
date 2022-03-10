@@ -31,12 +31,12 @@ FLAGS = -Wall -Wextra -Werror
 #linking to location of libft and .a -L library, -I is for reaching folders, 
 #-l for files.c \\ NOTE: USE THIS TO COMPILE IN MAC OS, AND CHANGE THE INCLUDES
 # LOCATION TO minilibx-linux
-LINKS := -I libft/includes -L libft -I includes -L srcs -I /usr/local/include -L /usr/local/lib \
-		-l mlx -l ft -framework OpenGL -framework Appkit
+# LINKS := -I libft/includes -L libft -I includes -L srcs -I /usr/local/include -L /usr/local/lib \
+# 		-l mlx -l ft -framework OpenGL -framework Appkit
 
 #NOTE: COMMENT OUT THE TOP LINK AND USE THIS LOWER ONE WHEN COMPILING IN LINUX
-# LINKS := -I libft/includes -L libft -I minilibx-linux -L minilibx-linux -I includes -L srcs\
-# 		-l mlx -l ft -lmlx -lX11 -lXext -lm
+LINKS := -I libft/includes -L libft -I minilibx-linux -L minilibx-linux -I includes -L srcs\
+		-l mlx -l ft -lmlx -lX11 -lXext -lm
 
 #compiling line
 CC = gcc
@@ -45,7 +45,8 @@ CC = gcc
 #then MAKE the current make
 #NOTE: ADD $(MAKE) -C $(MLX) UNDER LIBFT LINE WHEN COMPILING IN LINUX
 all:
-	$(MAKE) -C	$(LIBFT)	
+	$(MAKE) -C	$(LIBFT)
+	$(MAKE) -C $(MLX)
 	$(MAKE)		$(NAME)
 
 #NAME calling .o files then compiles the .c files with the program name, applies 
